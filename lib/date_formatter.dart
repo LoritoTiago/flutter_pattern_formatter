@@ -1,7 +1,8 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/material.dart' show TextField;
 import 'dart:math';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart' show TextField;
+import 'package:flutter/services.dart';
 
 const INDEX_NOT_FOUND = -1;
 
@@ -79,12 +80,13 @@ class DateInputFormatter extends TextInputFormatter {
     }
 
     /// verify the number and position of splash character
-    final splashes = resultText!.replaceAll(RegExp(r'[^/]'), '');
-    int count = splashes.length;
-    if (resultText.length > 10 ||
+    final splashes = resultText?.replaceAll(RegExp(r'[^/]'), '');
+    int count = splashes?.length ?? 0;
+    final resultLength = resultText?.length ?? 0;
+    if (resultLength > 10 ||
         count != 2 ||
-        resultText[2].toString() != '/' ||
-        resultText[5].toString() != '/') {
+        resultText?[2].toString() != '/' ||
+        resultText?[5].toString() != '/') {
       return oldValue;
     }
 
